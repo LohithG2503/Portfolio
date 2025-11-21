@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, MessageCircle } from 'lucide-react';
 import { PlaceHolderImages } from './placeholder-images';
 
 export const skillsData = [
@@ -107,6 +107,6 @@ export const contactData = {
   socials: [
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/LohithG2503', icon: Linkedin },
     { name: 'GitHub', url: 'https://github.com/LohithG2503/', icon: Github },
-    { name: 'Twitter', url: '#', icon: Twitter },
+    { name: 'WhatsApp', url: 'https://wa.me/+918105684524/?text=Hello%20this%20is%20my%20Whatsapp%20number', icon: MessageCircle },
   ],
 };

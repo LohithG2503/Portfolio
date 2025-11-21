@@ -8,15 +8,15 @@
     },
     {
       "id": "project-1",
-      "description": "A modern web application dashboard",
-      "imageUrl": "https://images.unsplash.com/photo-1635183607544-bf69187cc310?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXNoYm9hcmQlMjB1aXxlbnwwfHx8fDE3NjM0NzkyMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "dashboard ui"
+      "description": "AI Placement Helper web application interface",
+      "imageUrl": "/ai-placement-helper.png",
+      "imageHint": "AI Placement Helper interface with glassmorphism design"
     },
     {
       "id": "project-2",
-      "description": "A smart shopping cart prototype with an Arduino board",
-      "imageUrl": "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb2JpbGUlMjBhcHB8ZW58MHx8fHwxNzYzNDc3ODE2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "smart shopping"
+      "description": "Arduino Uno SMD Edition microcontroller board",
+      "imageUrl": "/arduino-board.png",
+      "imageHint": "Arduino Uno board for Smart Shopping Cart project"
     },
     {
       "id": "project-3",
@@ -26,9 +26,9 @@
     },
     {
       "id": "project-4",
-      "description": "A data visualization dashboard",
-      "imageUrl": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXRhJTIwdmlzdWFsaXphdGlvbnxlbnwwfHx8fDE3NjMzOTk3NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "data visualization"
+      "description": "SIFT Workstation logo for DFIR Lab",
+      "imageUrl": "/sift-workstation.png",
+      "imageHint": "SIFT Workstation logo for digital forensics lab"
     }
   ]
 }

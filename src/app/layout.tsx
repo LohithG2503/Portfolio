@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/layout/header';
+import ConditionalHeader from '@/components/layout/conditional-header';
 
 export const metadata: Metadata = {
-  title: 'Talent Showcase',
-  description: 'A personal portfolio to showcase skills and projects.',
+  title: 'Lohith G - Cybersecurity & Digital Forensics Portfolio',
+  description: 'Certified Penetration Tester (CPT) specializing in cybersecurity, digital forensics, and hardware diagnostics. Portfolio showcasing skills, projects, and experience.',
 };
 
 export default function RootLayout({
@@ -26,11 +26,11 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          'min-h-screen font-body bg-secondary antialiased'
+          'min-h-screen font-body antialiased'
         )}
       >
-        <Header />
-        <main className="container mx-auto px-4 py-12 md:py-20">{children}</main>
+        <ConditionalHeader />
+        <main>{children}</main>
         <Toaster />
       </body>
     </html>

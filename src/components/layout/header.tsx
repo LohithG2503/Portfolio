@@ -2,37 +2,44 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { motion } from 'framer-motion';
 
 const navLinks = [
-  { href: '/', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#certifications', label: 'Certifications' },
-  { href: '#education', label: 'Education' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/portfolio#about', label: 'About' },
+  { href: '/portfolio#skills', label: 'Skills' },
+  { href: '/portfolio#projects', label: 'Projects' },
+  { href: '/portfolio#certifications', label: 'Certifications' },
+  { href: '/portfolio#education', label: 'Education' },
+  { href: '/portfolio#contact', label: 'Contact' },
 ];
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-purple-500/30 bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 backdrop-blur-xl supports-[backdrop-filter]:bg-purple-900/60">
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex items-center">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold">PORTFOLIO</span>
+          <Link href="/portfolio" className="mr-6 flex items-center space-x-2">
+            <motion.span 
+              className="font-bold text-white"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              PORTFOLIO
+            </motion.span>
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-primary"
+              className="text-white/80 transition-colors hover:text-white hover:scale-105 whitespace-nowrap"
             >
               {link.label}
             </Link>
@@ -40,30 +47,23 @@ export default function Header() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <Link href="/resume-refiner">
-            <Button>
-              AI Resume Refiner
-              <Sparkles className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="outline" size="icon">
+              <Button variant="outline" size="icon" className="border-purple-400/50 text-white hover:bg-purple-500/20">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Open main menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
+            <SheetContent side="left" className="bg-gradient-to-br from-purple-900/95 via-blue-900/95 to-indigo-900/95 backdrop-blur-xl border-purple-500/30">
               <div className="flex flex-col space-y-4 p-4">
-                <Link href="/" className="mr-6 flex items-center space-x-2 mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                  <span className="font-bold">PORTFOLIO</span>
+                <Link href="/portfolio" className="mr-6 flex items-center space-x-2 mb-4" onClick={() => setIsMobileMenuOpen(false)}>
+                  <span className="font-bold text-white">PORTFOLIO</span>
                 </Link>
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg transition-colors hover:text-primary"
+                    className="text-lg text-white/80 transition-colors hover:text-white"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}

@@ -1,19 +1,35 @@
-import CertificationsSection from "@/components/sections/certifications-section";
-import ContactSection from "@/components/sections/contact-section";
-import EducationSection from "@/components/sections/education-section";
-import HeroSection from "@/components/sections/hero-section";
-import ProjectsSection from "@/components/sections/projects-section";
-import SkillsSection from "@/components/sections/skills-section";
+'use client';
 
-export default function Home() {
-  return (
-    <div className="flex flex-col gap-24 md:gap-32">
-      <HeroSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <CertificationsSection />
-      <EducationSection />
-      <ContactSection />
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
+
+// Lazy load components for better performance
+const WelcomeScreen = dynamic(() => import("@/components/welcome-screen"), {
+  ssr: false,
+  loading: () => (
+    <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+      <div className="w-16 h-16 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
     </div>
+  ),
+});
+
+export default function WelcomePage() {
+  const router = useRouter();
+
+  const handleEnter = () => {
+    router.push('/portfolio');
+  };
+
+  return (
+    <Suspense
+      fallback={
+        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <WelcomeScreen onEnter={handleEnter} />
+    </Suspense>
   );
 }
