@@ -1,5 +1,39 @@
 import { Github, Linkedin, MessageCircle } from 'lucide-react';
-import { PlaceHolderImages } from './placeholder-images';
+
+// Inline placeholder images removed from external module to simplify assets
+const PLACEHOLDER_IMAGES = [
+  {
+    id: 'project-1',
+    description: 'AI Placement Helper web application interface',
+    imageUrl: '/ai-placement-helper.png',
+    imageHint: 'AI Placement Helper interface with glassmorphism design',
+  },
+  {
+    id: 'project-2',
+    description: 'Arduino Uno SMD Edition microcontroller board',
+    imageUrl: '/arduino-board.png',
+    imageHint: 'Arduino Uno board for Smart Shopping Cart project',
+  },
+  {
+    id: 'project-3',
+    description: 'An e-commerce storefront',
+    imageUrl:
+      'https://images.unsplash.com/photo-1586880244406-556ebe35f282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBzdG9yZXxlbnwwfHx8fDE3NjM0Nzc4Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    imageHint: 'ecommerce store',
+  },
+  {
+    id: 'project-4',
+    description: 'SIFT Workstation logo for DFIR Lab',
+    imageUrl: '/sift-workstation.png',
+    imageHint: 'SIFT Workstation logo for digital forensics lab',
+  },
+];
+
+const getProjectImage = (id: string) => {
+  return (
+    PLACEHOLDER_IMAGES.find((img) => img.id === id) || PLACEHOLDER_IMAGES[0]
+  );
+};
 
 export const skillsData = [
   { name: 'Penetration Testing' },
@@ -40,9 +74,6 @@ export const skillsData = [
   { name: 'Team Collaboration' },
 ];
 
-const getProjectImage = (id: string) => {
-  return PlaceHolderImages.find(img => img.id === id) || PlaceHolderImages[0];
-};
 
 export const projectsData = [
   {

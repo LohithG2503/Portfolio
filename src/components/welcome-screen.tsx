@@ -12,7 +12,7 @@ interface WelcomeScreenProps {
 }
 
 export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
-  const [isExiting, setIsExiting] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -20,11 +20,7 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
   }, []);
 
   const handleEnter = () => {
-    setIsExiting(true);
-    // Smooth transition with optimized timing
-    setTimeout(() => {
-      onEnter();
-    }, 500);
+    setIsVisible(false);
   };
 
   if (!isMounted) {
@@ -36,16 +32,16 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
   }
 
   return (
-    <AnimatePresence mode="wait">
-      {!isExiting && (
+    <AnimatePresence mode="wait" onExitComplete={onEnter}>
+      {isVisible && (
         <motion.div
           key="welcome"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ 
+          transition={{
             duration: 0.6,
-            ease: [0.4, 0, 0.2, 1]
+            ease: [0.4, 0, 0.2, 1],
           }}
           className="fixed inset-0 z-50 flex items-center justify-center"
         >
@@ -54,10 +50,10 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.6, 
+              transition={{
+                duration: 0.6,
                 delay: 0.2,
-                ease: [0.4, 0, 0.2, 1]
+                ease: [0.4, 0, 0.2, 1],
               }}
               className="text-center"
             >
@@ -73,14 +69,14 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
                 textColors={['#ffffff']}
               />
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.5, 
+              transition={{
+                duration: 0.5,
                 delay: 1.2,
-                ease: [0.4, 0, 0.2, 1]
+                ease: [0.4, 0, 0.2, 1],
               }}
             >
               <Button

@@ -1,13 +1,12 @@
 'use client';
-import Image from 'next/image';
+
 import { Button } from '@/components/ui/button';
 import { Download, Send } from 'lucide-react';
 import Link from 'next/link';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import SplitText from '@/components/ui/split-text';
 import { motion } from 'framer-motion';
 
-const profileImage = PlaceHolderImages.find(p => p.id === 'profile');
+// profile image removed — headshot not required for now
 
 export default function HeroSection() {
   return (
@@ -44,7 +43,7 @@ export default function HeroSection() {
             >
               <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90">
                 <SplitText animation="fadeInUp" delay={0.5} stagger={0.02}>
-                  Certified Penetration Tester (CPT) | Cybersecurity & Digital Forensics Specialist | Hardware Technician
+                  Certified Penetration Tester (CPT) | Hardware Technician | Aspiring CyberSecurity & SOC Analyst
                 </SplitText>
               </h2>
             </motion.div>
@@ -54,7 +53,7 @@ export default function HeroSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-base md:text-lg text-white/80 leading-relaxed"
             >
-              I'm a <strong className="text-white">Certified Penetration Tester (CPT)</strong> specializing in cybersecurity and digital forensics. My unique background combines hands-on hardware diagnostics at the chip and BIOS level with advanced security expertise in vulnerability assessment, malware investigation, and digital evidence acquisition. I've engineered a personal DFIR lab environment using VirtualBox, SIFT Workstation, and centralized logging with Sysmon and NXLog for safe malware analysis and threat hunting. Proficient in industry-standard tools like Wireshark, Nmap, Burp Suite, Metasploit, Autopsy, and Kali Linux, I analyze security threats from the physical hardware layer up. Beyond security, I've developed full-stack AI-powered applications and IoT prototypes, bringing a comprehensive perspective to building secure, intelligent systems that protect against real-world cyber threats.
+              I'm a <strong className="text-white">Certified Penetration Tester (CPT)</strong> specializing in Cybersecurity and SOC Operations. My unique background combines hands-on hardware diagnostics at the chip and BIOS level with advanced security expertise in vulnerability assessment, malware investigation. I've engineered a personal DFIR lab environment using VirtualBox, SIFT Workstation, and centralized logging with Sysmon and NXLog for safe malware analysis and threat hunting. Proficient in industry-standard tools like Wireshark, Nmap, Burp Suite, Metasploit, SIEM, Wazuh, Autopsy, and Kali Linux, I analyze security threats from the physical hardware layer up. Beyond security, I've developed full-stack AI-powered Placements Helper and IoT prototypes, bringing a comprehensive perspective to building secure, intelligent systems that protect against real-world cyber threats.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -80,7 +79,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 backdrop-blur-sm shadow-lg"
                 >
-                  Download CV <Download className="ml-2 h-4 w-4 text-white" strokeWidth={2.5} />
+                  Download Resume <Download className="ml-2 h-4 w-4 text-white" strokeWidth={2.5} />
                 </Button>
               </a>
             </motion.div>
@@ -95,20 +94,15 @@ export default function HeroSection() {
             }}
             className="flex justify-center md:justify-end"
           >
-            {profileImage && (
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/50 to-blue-500/50 rounded-full blur-2xl animate-pulse" />
-                <Image
-                  src={profileImage.imageUrl}
-                  alt="Lohith G"
-                  width={300}
-                  height={300}
-                  className="relative rounded-full object-cover border-4 border-purple-400/30 shadow-2xl ring-4 ring-purple-500/20"
-                  data-ai-hint={profileImage.imageHint}
-                  priority
-                />
+            <div className="relative max-w-xs">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/50 to-blue-500/50 rounded-full blur-2xl" />
+              <div className="relative rounded-full border-4 border-purple-400/20 bg-white/5 shadow-2xl ring-4 ring-purple-500/10 p-8 flex items-center justify-center h-72 w-72">
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold text-white">Lohith G</h3>
+                  <p className="mt-2 text-sm text-white/90">Certified Penetration Tester & Aspiring SOC Analyst</p>
+                </div>
               </div>
-            )}
+            </div>
           </motion.div>
         </div>
       </motion.div>
