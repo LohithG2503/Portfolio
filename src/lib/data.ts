@@ -8,18 +8,12 @@ const PLACEHOLDER_IMAGES = [
     imageUrl: '/ai-placement-helper.png',
     imageHint: 'AI Placement Helper interface with glassmorphism design',
   },
+
   {
     id: 'project-2',
-    description: 'Arduino Uno SMD Edition microcontroller board',
-    imageUrl: '/arduino-board.png',
-    imageHint: 'Arduino Uno board for Smart Shopping Cart project',
-  },
-  {
-    id: 'project-3',
-    description: 'An e-commerce storefront',
-    imageUrl:
-      'https://images.unsplash.com/photo-1586880244406-556ebe35f282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBzdG9yZXxlbnwwfHx8fDE3NjM0Nzc4Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    imageHint: 'ecommerce store',
+    description: 'Clarity-X DFIR reasoning engine',
+    imageUrl: '/Clarity-X.png',
+    imageHint: 'Clarity-X AI-driven DFIR reasoning engine',
   },
   {
     id: 'project-4',
@@ -79,24 +73,28 @@ export const projectsData = [
   {
     title: 'AI Placements Helper (Full-Stack)',
     description:
-      'Developed an AI-powered web application integrating LLMs (via llama.cpp) and cloud APIs to analyse job descriptions. Engineered a job analytics engine for resume-to-JD comparison, insight extraction, and automated report generation. Secured the backend (Express.js) using JWT for user authentication and session management.',
+      'Full‑stack job‑seeker app: secure JWT auth, job/company analysis and interview prep, with dual LLM inference (local llama.cpp or La Platforme cloud).',
     technologies: ['React.js', 'Express.js', 'Node.js', 'MongoDB', 'JWT'],
     image: getProjectImage('project-1'),
+    imageFit: 'contain' as const,
     sourceUrl: 'https://github.com/LohithG2503/Ai_Placements_Helper',
   },
   {
-    title: 'Smart Shopping Cart (IoT)',
+    title: 'Clarity-X: AI-Driven DFIR Reasoning Engine',
     description:
-      'Designed and prototyped an automated billing and inventory tracking system using Arduino microcontrollers. Integrated RFID modules, load sensors, and an LCD display for seamless user interaction and data capture. Recognized for innovation and practical execution at the college expo.',
-    technologies: ['Arduino IDE', 'C++', 'RFID Modules', 'Load Sensors'],
+      'An AI-driven DFIR reasoning engine that correlates real-time Sysmon events and uses LLMs to generate high-fidelity threat intelligence reports.',
+    technologies: ['Python', 'Sysmon', 'Winlogbeat', 'Groq API', 'LLM Integration', 'DFIR'],
     image: getProjectImage('project-2'),
+    imageFit: 'contain' as const,
+    sourceUrl: 'https://github.com/LohithG2503/Clarity-X',
   },
   {
     title: 'My Personal DFIR Lab',
     description:
-      'Engineered an isolated, virtualized security environment using VirtualBox, integrating a SIFT Workstation for forensics and a Windows 10 Enterprise victim node. Architected a centralized logging pipeline by deploying Sysmon for kernel-level endpoint visibility and configuring NXLog to forward telemetry to a custom Ubuntu/Syslog-ng server.',
+      'A fully isolated, virtualized DFIR laboratory featuring centralized logging (Sysmon/NXLog/Syslog-ng), network segmentation, and a SIFT forensic workstation for threat analysis.',
     technologies: ['VirtualBox', 'SIFT', 'Sysmon', 'NXLog', 'Syslog-ng', 'Bash'],
     image: getProjectImage('project-4'),
+    imageFit: 'cover' as const,
     sourceUrl: 'https://github.com/LohithG2503/My-Personal-DFIR',
   },
 ];
@@ -112,24 +110,23 @@ export const educationData = [
 ];
 
 export const certificationsData = [
-    {
-        title: 'Cybersecurity Fundamentals',
-        institution: 'IBM SkillsBuild',
-        image: {
-            imageUrl: '/IBM.png',
-            imageHint: 'IBM certificate'
-        },
-        description: '',
+  {
+    title: 'Cybersecurity Fundamentals',
+    institution: 'IBM SkillsBuild',
+    image: {
+      imageUrl: '/IBM.png',
+      imageHint: 'IBM certificate'
     },
-    {
-        title: 'Certified Penetration Tester (CPT)',
-        institution: 'RedTeam Hacker Academy (2025)',
-        image: {
-            imageUrl: '/cpt-cert.png',
-            imageHint: 'CPT certificate'
-        },
-        description: 'Score: 88/100',
-    }
+    description: '',
+  },
+  {
+    title: 'Certified Penetration Tester (CPT)',
+    institution: 'RedTeam Hacker Academy (2025)',
+    image: {
+      imageUrl: '/cpt-cert.png',
+      imageHint: 'CPT certificate'
+    },
+  }
 ];
 
 

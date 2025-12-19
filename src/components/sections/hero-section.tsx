@@ -14,7 +14,7 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ 
+        transition={{
           duration: 0.5,
           ease: [0.4, 0, 0.2, 1]
         }}
@@ -22,7 +22,7 @@ export default function HeroSection() {
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center relative z-10">
           <div className="md:col-span-2 space-y-6">
             <motion.div
@@ -42,9 +42,11 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
             >
               <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90">
-                <SplitText animation="fadeInUp" delay={0.5} stagger={0.02}>
-                  Certified Penetration Tester (CPT) | Hardware Technician | Aspiring CyberSecurity & SOC Analyst
-                </SplitText>
+                <span className="inline-block">Certified Penetration Tester (CPT)</span>
+                <span className="mx-2">|</span>
+                <span className="inline-block">Hardware Technician</span>
+                <span className="mx-2">|</span>
+                <span className="inline-block">Aspiring CyberSecurity & SOC Analyst</span>
               </h2>
             </motion.div>
             <motion.p
@@ -58,24 +60,24 @@ export default function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                delay: 0.4, 
+              transition={{
+                delay: 0.4,
                 duration: 0.4,
                 ease: [0.4, 0, 0.2, 1]
               }}
               className="flex flex-wrap gap-4 pt-4"
             >
               <Link href="/portfolio#contact">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-purple-400/30 shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
                 >
                   Get in Touch <Send className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <a href="/LohithG-Resume-Latest.pdf" download>
+              <a href="/MainResume(NonATS).pdf" download>
                 <Button
-                  size="lg" 
+                  size="lg"
                   variant="outline"
                   className="bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 backdrop-blur-sm shadow-lg"
                 >
@@ -87,8 +89,8 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              delay: 0.25, 
+            transition={{
+              delay: 0.25,
               duration: 0.4,
               ease: [0.4, 0, 0.2, 1]
             }}
