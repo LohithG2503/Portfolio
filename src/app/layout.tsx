@@ -7,6 +7,7 @@ import ConditionalHeader from '@/components/layout/conditional-header';
 export const metadata: Metadata = {
   title: 'Lohith G - Cybersecurity & Digital Forensics Portfolio',
   description: 'Certified Penetration Tester (CPT) specializing in cybersecurity, digital forensics, and hardware diagnostics. Portfolio showcasing skills, projects, and experience.',
+  icons: [],
 };
 
 export default function RootLayout({
