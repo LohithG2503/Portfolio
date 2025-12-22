@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, useRef, ReactNode, useState } from 'react';
 import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
 
@@ -23,24 +23,30 @@ export default function SplitText({
   animation = 'fadeInUp',
   startOnVisible = true,
 }: SplitTextProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLSpanElement>(null);
   const charsRef = useRef<HTMLSpanElement[]>([]);
   const hasAnimatedRef = useRef(false);
   const animationRef = useRef<gsap.core.Tween | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Only run on client after mount
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!isMounted || !containerRef.current) return;
 
-    const text = containerRef.current.textContent || '';
+    const text = typeof children === 'string' ? children : '';
     if (!text) return;
-    
+
     const chars = text.split('');
-    
-    // Clear existing content
+
+    // Clear existing content and rebuild with spans
     containerRef.current.innerHTML = '';
     charsRef.current = [];
 
-    chars.forEach((char, index) => {
+    chars.forEach((char) => {
       const span = document.createElement('span');
       span.textContent = char === ' ' ? '\u00A0' : char;
       span.style.display = 'inline-block';
@@ -138,12 +144,12 @@ export default function SplitText({
         animationRef.current.kill();
       }
     };
-  }, [children, delay, duration, stagger, animation, startOnVisible]);
+  }, [isMounted, children, delay, duration, stagger, animation, startOnVisible]);
 
+  // Return static text on server, animated text on client
   return (
     <span ref={containerRef} className={cn('inline-block', className)}>
       {children}
     </span>
   );
 }
-

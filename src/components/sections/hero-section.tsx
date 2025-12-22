@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
-    <section id="about" className="py-8 md:py-12 relative z-10">
+    <section id="about" className="pb-8 pt-2 md:pb-12 md:pt-4 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

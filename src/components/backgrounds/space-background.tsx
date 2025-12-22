@@ -9,14 +9,20 @@ interface SpaceBackgroundProps {
   nebulaCount?: number;
 }
 
-export default function SpaceBackground({ 
-  className = '', 
+export default function SpaceBackground({
+  className = '',
   starCount,
   nebulaCount
 }: SpaceBackgroundProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const starsRef = useRef<HTMLDivElement>(null);
+  const nebulaRef = useRef<HTMLDivElement>(null);
+
+  // Handle client-side mount
   useEffect(() => {
+    setIsMounted(true);
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -28,11 +34,9 @@ export default function SpaceBackground({
   // Optimize for performance: significantly reduce stars and nebulae
   const optimizedStarCount = starCount ?? (isMobile ? 50 : 80);
   const optimizedNebulaCount = nebulaCount ?? (isMobile ? 1 : 2);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const starsRef = useRef<HTMLDivElement>(null);
-  const nebulaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!isMounted) return;
     const starsContainer = starsRef.current;
     if (!starsContainer) return;
 
@@ -69,7 +73,7 @@ export default function SpaceBackground({
         force3D: false,
         willChange: 'opacity',
       });
-      
+
       // Store animation for cleanup
       (star as any)._gsapAnimation = twinkleAnimation;
     }
@@ -81,9 +85,10 @@ export default function SpaceBackground({
         star.remove();
       });
     };
-  }, [optimizedStarCount]);
+  }, [isMounted, optimizedStarCount]);
 
   useEffect(() => {
+    if (!isMounted) return;
     const nebulaContainer = nebulaRef.current;
     if (!nebulaContainer) return;
 
@@ -128,7 +133,7 @@ export default function SpaceBackground({
         force3D: false,
         willChange: 'transform',
       });
-      
+
       // Store animation for cleanup
       (nebula as any)._gsapAnimation = nebulaAnimation;
     }
@@ -140,7 +145,7 @@ export default function SpaceBackground({
         nebula.remove();
       });
     };
-  }, [optimizedNebulaCount]);
+  }, [isMounted, optimizedNebulaCount]);
 
   return (
     <div
@@ -155,4 +160,3 @@ export default function SpaceBackground({
     </div>
   );
 }
-

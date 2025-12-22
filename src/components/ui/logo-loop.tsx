@@ -42,23 +42,27 @@ export default function LogoLoop({
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [currentSpeed, setCurrentSpeed] = useState(speed);
 
   // Duplicate logos for seamless loop
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
+  // Handle client-side mount
   useEffect(() => {
-    if (!containerRef.current || !wrapperRef.current) return;
+    setIsMounted(true);
+  }, []);
 
-    const container = containerRef.current;
+  useEffect(() => {
+    if (!isMounted || !containerRef.current || !wrapperRef.current) return;
+
     const wrapper = wrapperRef.current;
     const isVertical = direction === 'up' || direction === 'down';
     const isReverse = direction === 'right' || direction === 'down';
 
     // Calculate total width/height
     const totalSize = duplicatedLogos.length * (logoHeight + gap);
-    const containerSize = isVertical ? container.offsetHeight : container.offsetWidth;
 
     // Set wrapper size
     if (isVertical) {
@@ -103,7 +107,7 @@ export default function LogoLoop({
       clearTimeout(timer);
       animationRef.current?.kill();
     };
-  }, [logos, speed, direction, logoHeight, gap, isHovered, hoverSpeed, currentSpeed, duplicatedLogos]);
+  }, [isMounted, logos, speed, direction, logoHeight, gap, isHovered, hoverSpeed, currentSpeed, duplicatedLogos.length]);
 
   const handleMouseEnter = () => {
     if (hoverSpeed !== undefined) {
@@ -125,14 +129,12 @@ export default function LogoLoop({
       aria-label={ariaLabel}
       style={{
         maskImage: fadeOut
-          ? `linear-gradient(${
-              direction === 'left' || direction === 'right' ? 'to right' : 'to bottom'
-            }, transparent, ${fadeOutColor} 10%, ${fadeOutColor} 90%, transparent)`
+          ? `linear-gradient(${direction === 'left' || direction === 'right' ? 'to right' : 'to bottom'
+          }, transparent, ${fadeOutColor} 10%, ${fadeOutColor} 90%, transparent)`
           : undefined,
         WebkitMaskImage: fadeOut
-          ? `linear-gradient(${
-              direction === 'left' || direction === 'right' ? 'to right' : 'to bottom'
-            }, transparent, ${fadeOutColor} 10%, ${fadeOutColor} 90%, transparent)`
+          ? `linear-gradient(${direction === 'left' || direction === 'right' ? 'to right' : 'to bottom'
+          }, transparent, ${fadeOutColor} 10%, ${fadeOutColor} 90%, transparent)`
           : undefined,
       }}
     >
@@ -146,9 +148,8 @@ export default function LogoLoop({
         {duplicatedLogos.map((logo, index) => (
           <div
             key={index}
-            className={`flex-shrink-0 flex items-center justify-center ${
-              scaleOnHover ? 'transition-transform duration-300 hover:scale-110' : ''
-            }`}
+            className={`flex-shrink-0 flex items-center justify-center ${scaleOnHover ? 'transition-transform duration-300 hover:scale-110' : ''
+              }`}
             style={{
               height: `${logoHeight}px`,
               width: logo.node || logo.src ? `${logoHeight}px` : 'auto',
@@ -204,4 +205,3 @@ export default function LogoLoop({
     </div>
   );
 }
-

@@ -46,6 +46,7 @@ const TextType = ({
   reverseMode = false,
   ...props
 }: TextTypeProps & React.HTMLAttributes<HTMLElement>) => {
+  const [isMounted, setIsMounted] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -56,6 +57,11 @@ const TextType = ({
   const containerRef = useRef<HTMLElement>(null);
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
+
+  // Handle client-side mount
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const getRandomSpeed = useCallback(() => {
     if (!variableSpeed) return typingSpeed;
@@ -69,7 +75,7 @@ const TextType = ({
   };
 
   useEffect(() => {
-    if (!startOnVisible || !containerRef.current) return;
+    if (!isMounted || !startOnVisible || !containerRef.current) return;
 
     const observer = new IntersectionObserver(
       entries => {
@@ -84,9 +90,10 @@ const TextType = ({
 
     observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [startOnVisible]);
+  }, [isMounted, startOnVisible]);
 
   useEffect(() => {
+    if (!isMounted) return;
     if (showCursor && cursorRef.current) {
       gsap.set(cursorRef.current, { opacity: 1 });
       const animation = gsap.to(cursorRef.current, {
@@ -100,10 +107,10 @@ const TextType = ({
         animation.kill();
       };
     }
-  }, [showCursor, cursorBlinkDuration]);
+  }, [isMounted, showCursor, cursorBlinkDuration]);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isMounted || !isVisible) return;
 
     let timeout: NodeJS.Timeout;
 
@@ -124,7 +131,7 @@ const TextType = ({
 
           setCurrentTextIndex(prev => (prev + 1) % textArray.length);
           setCurrentCharIndex(0);
-          timeout = setTimeout(() => {}, pauseDuration);
+          timeout = setTimeout(() => { }, pauseDuration);
         } else {
           timeout = setTimeout(() => {
             setDisplayedText(prev => prev.slice(0, -1));
@@ -156,6 +163,7 @@ const TextType = ({
 
     return () => clearTimeout(timeout);
   }, [
+    isMounted,
     currentCharIndex,
     displayedText,
     isDeleting,
@@ -175,6 +183,27 @@ const TextType = ({
 
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
+
+  // Render placeholder on server to match initial client render
+  if (!isMounted) {
+    return createElement(
+      Component,
+      {
+        className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
+        ...props
+      },
+      <span className="inline" style={{ color: getCurrentTextColor() || 'inherit' }}>
+        {/* Empty on server to match initial client state */}
+      </span>,
+      showCursor && (
+        <span
+          className={`ml-1 inline-block opacity-100 ${cursorClassName}`}
+        >
+          {cursorCharacter}
+        </span>
+      )
+    );
+  }
 
   return createElement(
     Component,
@@ -198,4 +227,3 @@ const TextType = ({
 };
 
 export default TextType;
-

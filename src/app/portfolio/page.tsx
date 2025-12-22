@@ -10,7 +10,8 @@ const SpaceBackground = dynamic(() => import("@/components/backgrounds/space-bac
 });
 
 // Lazy load sections for code splitting
-const HeroSection = lazy(() => import("@/components/sections/hero-section"));
+// Eager load Hero section
+import HeroSection from '@/components/sections/hero-section';
 const SkillsSection = lazy(() => import("@/components/sections/skills-section"));
 const ProjectsSection = lazy(() => import("@/components/sections/projects-section"));
 const CertificationsSection = lazy(() => import("@/components/sections/certifications-section"));
@@ -30,26 +31,24 @@ export default function PortfolioPage() {
       <Suspense fallback={null}>
         <SpaceBackground className="fixed" starCount={60} nebulaCount={1} />
       </Suspense>
-      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 lg:py-20">
+      <div className="relative z-10 container mx-auto px-4 pt-4 pb-8 md:pt-8 md:pb-12 lg:pt-12 lg:pb-20">
         <div className="flex flex-col gap-16 md:gap-24 lg:gap-32">
-        <Suspense fallback={<SectionLoader />}>
           <HeroSection />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <SkillsSection />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <ProjectsSection />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <CertificationsSection />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <EducationSection />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <ContactSection />
-        </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <SkillsSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <ProjectsSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <CertificationsSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <EducationSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <ContactSection />
+          </Suspense>
         </div>
       </div>
     </div>
