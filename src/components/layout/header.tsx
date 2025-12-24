@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { motion } from 'framer-motion';
 
 const navLinks = [
@@ -24,7 +24,7 @@ export default function Header() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex items-center">
           <Link href="/portfolio" className="mr-6 flex items-center space-x-2">
-            <motion.span 
+            <motion.span
               className="font-bold text-white"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -55,6 +55,8 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="bg-gradient-to-br from-purple-900/95 via-blue-900/95 to-indigo-900/95 backdrop-blur-xl border-purple-500/30">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              <SheetDescription className="sr-only">Main navigation links for the portfolio</SheetDescription>
               <div className="flex flex-col space-y-4 p-4">
                 <Link href="/portfolio" className="mr-6 flex items-center space-x-2 mb-4" onClick={() => setIsMobileMenuOpen(false)}>
                   <span className="font-bold text-white">PORTFOLIO</span>
